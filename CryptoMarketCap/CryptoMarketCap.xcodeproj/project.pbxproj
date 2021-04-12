@@ -13,6 +13,19 @@
 		8F48953E26242412000A3F40 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F48953D26242412000A3F40 /* Preview Assets.xcassets */; };
 		8F48954926242412000A3F40 /* CryptoMarketCapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48954826242412000A3F40 /* CryptoMarketCapTests.swift */; };
 		8F48955426242412000A3F40 /* CryptoMarketCapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48955326242412000A3F40 /* CryptoMarketCapUITests.swift */; };
+		8F48956D26242BF0000A3F40 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48956C26242BF0000A3F40 /* NetworkClient.swift */; };
+		8F48957526242C0D000A3F40 /* MarketsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957426242C0D000A3F40 /* MarketsService.swift */; };
+		8F48957A26242C51000A3F40 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957926242C51000A3F40 /* Market.swift */; };
+		8F48957F26242C6D000A3F40 /* CoingeckoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957E26242C6D000A3F40 /* CoingeckoAPI.swift */; };
+		8F48958526242DE0000A3F40 /* MarketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48958426242DE0000A3F40 /* MarketsStore.swift */; };
+		8F48958A262431D7000A3F40 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F489589262431D7000A3F40 /* MarketsView.swift */; };
+		8F489590262432E8000A3F40 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48958F262432E8000A3F40 /* ErrorView.swift */; };
+		8F48959626243387000A3F40 /* MarketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48959526243387000A3F40 /* MarketItemView.swift */; };
+		8F48959E262433A3000A3F40 /* MarketItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48959D262433A3000A3F40 /* MarketItemViewModel.swift */; };
+		8F4895B12624343A000A3F40 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4895B02624343A000A3F40 /* AsyncImage.swift */; };
+		8F4895B926243452000A3F40 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4895B826243452000A3F40 /* ImageCache.swift */; };
+		8F4895BE26243465000A3F40 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4895BD26243465000A3F40 /* ImageLoader.swift */; };
+		8F4895C32624347A000A3F40 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4895C22624347A000A3F40 /* EnvironmentValues+ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +58,19 @@
 		8F48954F26242412000A3F40 /* CryptoMarketCapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoMarketCapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F48955326242412000A3F40 /* CryptoMarketCapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMarketCapUITests.swift; sourceTree = "<group>"; };
 		8F48955526242412000A3F40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F48956C26242BF0000A3F40 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		8F48957426242C0D000A3F40 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
+		8F48957926242C51000A3F40 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		8F48957E26242C6D000A3F40 /* CoingeckoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoingeckoAPI.swift; sourceTree = "<group>"; };
+		8F48958426242DE0000A3F40 /* MarketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsStore.swift; sourceTree = "<group>"; };
+		8F489589262431D7000A3F40 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
+		8F48958F262432E8000A3F40 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		8F48959526243387000A3F40 /* MarketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItemView.swift; sourceTree = "<group>"; };
+		8F48959D262433A3000A3F40 /* MarketItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItemViewModel.swift; sourceTree = "<group>"; };
+		8F4895B02624343A000A3F40 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		8F4895B826243452000A3F40 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		8F4895BD26243465000A3F40 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		8F4895C22624347A000A3F40 /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +121,13 @@
 		8F48953526242411000A3F40 /* CryptoMarketCap */ = {
 			isa = PBXGroup;
 			children = (
-				8F48953626242411000A3F40 /* CryptoMarketCapApp.swift */,
-				8F48953826242411000A3F40 /* ContentView.swift */,
 				8F48953A26242412000A3F40 /* Assets.xcassets */,
+				8F48953626242411000A3F40 /* CryptoMarketCapApp.swift */,
 				8F48953F26242412000A3F40 /* Info.plist */,
+				8F48956726242916000A3F40 /* Models */,
 				8F48953C26242412000A3F40 /* Preview Content */,
+				8F489564262425D5000A3F40 /* Scenes */,
+				8F4895682624291C000A3F40 /* Services */,
 			);
 			path = CryptoMarketCap;
 			sourceTree = "<group>";
@@ -128,6 +156,97 @@
 				8F48955526242412000A3F40 /* Info.plist */,
 			);
 			path = CryptoMarketCapUITests;
+			sourceTree = "<group>";
+		};
+		8F489564262425D5000A3F40 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8F48958E262432E2000A3F40 /* Common */,
+				8F48958326242DD4000A3F40 /* Markets */,
+				8F48953826242411000A3F40 /* ContentView.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8F48956726242916000A3F40 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8F48957926242C51000A3F40 /* Market.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8F4895682624291C000A3F40 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8F48956B26242BDE000A3F40 /* Networking */,
+				8F48956A26242BCB000A3F40 /* Markets */,
+				8F48956926242934000A3F40 /* API */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8F48956926242934000A3F40 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8F48957E26242C6D000A3F40 /* CoingeckoAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8F48956A26242BCB000A3F40 /* Markets */ = {
+			isa = PBXGroup;
+			children = (
+				8F48957426242C0D000A3F40 /* MarketsService.swift */,
+			);
+			path = Markets;
+			sourceTree = "<group>";
+		};
+		8F48956B26242BDE000A3F40 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8F48956C26242BF0000A3F40 /* NetworkClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8F48958326242DD4000A3F40 /* Markets */ = {
+			isa = PBXGroup;
+			children = (
+				8F48959426243380000A3F40 /* MarketItem */,
+				8F48958426242DE0000A3F40 /* MarketsStore.swift */,
+				8F489589262431D7000A3F40 /* MarketsView.swift */,
+			);
+			path = Markets;
+			sourceTree = "<group>";
+		};
+		8F48958E262432E2000A3F40 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8F4895AF2624342F000A3F40 /* AsyncImage */,
+				8F48958F262432E8000A3F40 /* ErrorView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8F48959426243380000A3F40 /* MarketItem */ = {
+			isa = PBXGroup;
+			children = (
+				8F48959526243387000A3F40 /* MarketItemView.swift */,
+				8F48959D262433A3000A3F40 /* MarketItemViewModel.swift */,
+			);
+			path = MarketItem;
+			sourceTree = "<group>";
+		};
+		8F4895AF2624342F000A3F40 /* AsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				8F4895B02624343A000A3F40 /* AsyncImage.swift */,
+				8F4895B826243452000A3F40 /* ImageCache.swift */,
+				8F4895BD26243465000A3F40 /* ImageLoader.swift */,
+				8F4895C22624347A000A3F40 /* EnvironmentValues+ImageCache.swift */,
+			);
+			path = AsyncImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +378,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F4895BE26243465000A3F40 /* ImageLoader.swift in Sources */,
 				8F48953926242411000A3F40 /* ContentView.swift in Sources */,
+				8F4895B926243452000A3F40 /* ImageCache.swift in Sources */,
+				8F48959E262433A3000A3F40 /* MarketItemViewModel.swift in Sources */,
+				8F4895C32624347A000A3F40 /* EnvironmentValues+ImageCache.swift in Sources */,
+				8F48959626243387000A3F40 /* MarketItemView.swift in Sources */,
 				8F48953726242411000A3F40 /* CryptoMarketCapApp.swift in Sources */,
+				8F4895B12624343A000A3F40 /* AsyncImage.swift in Sources */,
+				8F48956D26242BF0000A3F40 /* NetworkClient.swift in Sources */,
+				8F48957F26242C6D000A3F40 /* CoingeckoAPI.swift in Sources */,
+				8F48958526242DE0000A3F40 /* MarketsStore.swift in Sources */,
+				8F48957526242C0D000A3F40 /* MarketsService.swift in Sources */,
+				8F48958A262431D7000A3F40 /* MarketsView.swift in Sources */,
+				8F489590262432E8000A3F40 /* ErrorView.swift in Sources */,
+				8F48957A26242C51000A3F40 /* Market.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
