@@ -10,6 +10,7 @@ import Foundation
 
 protocol MarketsServicing: AnyObject {
     func markets() -> AnyPublisher<[Market], Error>
+    func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error>
 }
 
 final class MarketsService {
@@ -24,5 +25,9 @@ final class MarketsService {
 extension MarketsService: MarketsServicing {
     func markets() -> AnyPublisher<[Market], Error> {
         CoingeckoAPI.markets()
+    }
+
+    func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
+        CoingeckoAPI.marketChart(marketId: marketId)
     }
 }

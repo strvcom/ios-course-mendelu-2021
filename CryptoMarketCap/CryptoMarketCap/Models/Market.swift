@@ -11,7 +11,7 @@ struct Market: Identifiable, Hashable {
     let id: String
     let name: String
     let symbol: String
-    let image: String
+    let imageUrl: URL
     let currentPrice: Double
     let marketCap: Int
     let marketCapRank: Int
@@ -20,12 +20,8 @@ struct Market: Identifiable, Hashable {
 
 // MARK: marketItemModel
 extension Market {
-    var marketItemModel: MarketItemViewModel? {
-        guard let imageUrl = URL(string: image) else {
-            print("Ooops. Image url decoding fail.")
-            return nil
-        }
-        return MarketItemViewModel(
+    var marketItemModel: MarketItemViewModel {
+        MarketItemViewModel(
             id: id,
             name: name,
             symbol: symbol.uppercased(),

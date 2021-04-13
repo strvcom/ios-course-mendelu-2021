@@ -13,8 +13,8 @@ final class MarketsStore: ObservableObject {
     enum State {
         case initial
         case loading
-        case ready(markets: [MarketItemViewModel])
-        case failed(error:Error)
+        case ready(markets: [Market])
+        case failed(error: Error)
     }
 
     // Dependencies
@@ -43,7 +43,7 @@ final class MarketsStore: ObservableObject {
                 self?.marketsService.markets()
                     // Map data to state
                     .map { markets -> State in
-                        State.ready(markets: markets.compactMap(\.marketItemModel))
+                        State.ready(markets: markets)
                     }
                     // Map error to failed state
                     .catch { error in

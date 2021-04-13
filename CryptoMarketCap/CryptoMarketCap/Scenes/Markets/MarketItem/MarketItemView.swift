@@ -59,7 +59,6 @@ struct MarketItemView: View {
                     .foregroundColor(model.priceChangePercentageIsPositive ? .green : .red)
             }
         }
-        .background(Color(.systemBackground))
     }
 }
 

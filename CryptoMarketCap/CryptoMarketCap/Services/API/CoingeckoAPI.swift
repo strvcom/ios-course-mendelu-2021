@@ -22,20 +22,42 @@ extension CoingeckoAPI {
         urlRequest.cachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
         let request: AnyPublisher<[CoingeckoMarket], Error> = run(urlRequest)
         return request
-            .map { $0.map(\.market) }
+            .map { $0.compactMap(\.market) }
+            .eraseToAnyPublisher()
+    }
+
+    /// - Parameters:
+    ///   - marketId: `Market.id`
+    /// - Returns: Get historical market data include price
+    static func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
+        // Load 7 day chart
+        let days = 7
+        let url = buildUrl(with: "/coins/\(marketId)/market_chart?vs_currency=czk&days=\(days)")
+        let request: AnyPublisher<CoingeckoChart, Error> = run(URLRequest(url: url))
+        return request
+            .map(\.prices)
+            .map { response in
+                response.compactMap { item in
+                    guard item.count == 2 else {
+                        return nil
+                    }
+                    let date = Date(timeIntervalSince1970: item[0] / 1000) // 1000 because of nanoseconds
+                    return ChartViewModel.Value(date: date, value: item[1])
+                }
+            }
             .eraseToAnyPublisher()
     }
 }
 
 // MARK: - Helpers
-extension CoingeckoAPI {
-    private static func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+private extension CoingeckoAPI {
+    static func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         client.perform(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
 
-    private static func buildUrl(with path: String) -> URL {
+    static func buildUrl(with path: String) -> URL {
         let stringUrl = base + path
         return URL(string: stringUrl)!
     }
@@ -86,17 +108,23 @@ extension CoingeckoAPI {
         let marketCapRank: Int
         let priceChangePercentage24h: Double?
 
-        var market: Market {
-            Market(
+        var market: Market? {
+            guard let imageUrl = URL(string: image) else { return nil }
+            return Market(
                 id: id,
                 name: name,
                 symbol: symbol,
-                image: image,
+                imageUrl: imageUrl,
                 currentPrice: currentPrice,
                 marketCap: marketCap,
                 marketCapRank: marketCapRank,
                 priceChangePercentage24h: priceChangePercentage24h ?? 0
             )
         }
+    }
+
+    // MARK: Chart
+    struct CoingeckoChart: Decodable {
+        let prices: [[Double]]
     }
 }
