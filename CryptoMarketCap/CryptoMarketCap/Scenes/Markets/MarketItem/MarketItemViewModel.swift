@@ -6,26 +6,30 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct MarketItemViewModel: Identifiable, Hashable {
     let id: String
     let name: String
     let symbol: String
     let rank: Int
-    /// Already formatted price with currency symbol
     let price: Double
     let priceChangePercentage: Double
     let image: URL
 }
 
 extension MarketItemViewModel {
-    var priceHumanReadable: String {
+    var rankText: String {
+        " #\(rank) "
+    }
+
+    var priceText: String {
         price > 10
             ? "\(Int(price)) CZK"
             : String(format: "%.1f", price) + " CZK"
     }
 
-    var priceChangePercentageHumanReadable: String {
+    var priceChangeText: String {
         let priceChangeFormatted = String(format: "%.1f", priceChangePercentage) + "%"
         if priceChangePercentage > 19 {
             return "🚀 \(priceChangeFormatted)"
@@ -35,8 +39,8 @@ extension MarketItemViewModel {
         return priceChangeFormatted
     }
 
-    var priceChangePercentageIsPositive: Bool {
-        priceChangePercentage >= 0
+    var priceChangeColor: Color {
+        priceChangePercentage >= 0 ? .green : .red
     }
 }
 

@@ -31,7 +31,7 @@ struct MarketItemView: View {
                     .fontWeight(.bold)
 
                 HStack(spacing: 6) {
-                    Text(" #\(model.rank) ")
+                    Text(model.rankText)
                         .font(.caption)
                         .fontWeight(.bold)
                         .padding(2)
@@ -49,14 +49,14 @@ struct MarketItemView: View {
 
             // price, percentage change
             VStack(alignment: .trailing, spacing: 2) {
-                Text(model.priceHumanReadable)
+                Text(model.priceText)
                     .font(.body)
                     .fontWeight(.bold)
 
-                Text(model.priceChangePercentageHumanReadable)
+                Text(model.priceChangeText)
                     .font(.caption)
                     .fontWeight(.bold)
-                    .foregroundColor(model.priceChangePercentageIsPositive ? .green : .red)
+                    .foregroundColor(model.priceChangeColor)
             }
         }
     }

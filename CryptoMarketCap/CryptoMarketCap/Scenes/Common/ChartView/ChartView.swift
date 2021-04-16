@@ -23,11 +23,11 @@ struct ChartView: View {
             HStack {
                 // Current price
                 VStack(alignment: .leading) {
-                    Text(String(format: "%.1f", model.currentPrice))
+                    Text(model.currentPriceText)
                         .font(.title2)
                         .bold()
 
-                    Text("\(DateFormatters.shortDateFormatter.string(from: (model.lastDate)))")
+                    Text(model.currentDateText)
                         .font(.caption)
                         .bold()
                         .foregroundColor(Color(.secondaryLabel))
@@ -36,9 +36,9 @@ struct ChartView: View {
                 Spacer()
 
                 // Price difference percentage
-                Text(model.priceDifferencePercentage)
+                Text(model.priceDifferencePercentageText)
                     .font(.headline)
-                    .foregroundColor(Color(model.priceDifferenceIsPositive ? .systemGreen : .systemRed))
+                    .foregroundColor(model.priceDifferenceColor)
                     .padding(4)
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(4)
@@ -57,10 +57,7 @@ struct ChartView: View {
                 points: model.values.map(\.value),
                 step: CGPoint(x: stepWidth(totalWidth: geometry.size.width), y: stepHeight(totalHeight: geometry.size.height))
             )
-            .stroke(
-                Color(model.priceDifferenceIsPositive ? .systemGreen : .systemRed),
-                style: StrokeStyle(lineWidth: 2, lineJoin: .round)
-            )
+            .stroke(model.priceDifferenceColor, style: StrokeStyle(lineWidth: 2, lineJoin: .round))
             .rotationEffect(.degrees(180), anchor: .center)
             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
             .drawingGroup()

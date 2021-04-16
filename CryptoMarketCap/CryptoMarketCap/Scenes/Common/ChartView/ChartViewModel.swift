@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ChartViewModel: Identifiable {
     struct Value {
@@ -27,14 +28,28 @@ struct ChartViewModel: Identifiable {
         self.lastDate = values.last!.date
         self.currentPrice = values.last!.value
         let percentage = (values.last!.value / values.first!.value * 100) - 100
-        self.priceDifferencePercentage = "\(String(format: "%.1f", percentage)) %"
+        self.priceDifferencePercentageText = "\(String(format: "%.1f", percentage)) %"
         self.priceDifferenceIsPositive = percentage > 0
     }
 
+    let priceDifferencePercentageText: String
     /// Difference between maximum & minimum value
-    let difference: Double
-    let lastDate: Date
-    let currentPrice: Double
-    let priceDifferencePercentage: String
-    let priceDifferenceIsPositive: Bool
+    private let difference: Double
+    private let lastDate: Date
+    private let currentPrice: Double
+    private let priceDifferenceIsPositive: Bool
+}
+
+extension ChartViewModel {
+    var currentPriceText: String {
+        String(format: "%.1f", currentPrice) + " CZK"
+    }
+
+    var currentDateText: String {
+        DateFormatters.shortDateFormatter.string(from: (lastDate))
+    }
+
+    var priceDifferenceColor: Color {
+        priceDifferenceIsPositive ? .green : .red
+    }
 }

@@ -53,7 +53,7 @@ final class MarketDetailStore: ObservableObject {
                             let minumum = values.map(\.value).min(),
                             let maximum = values.map(\.value).max()
                         else {
-                            // TOOD:
+                            // TODO:
                             return ChartState.failed(error: NSError())
                         }
                         
