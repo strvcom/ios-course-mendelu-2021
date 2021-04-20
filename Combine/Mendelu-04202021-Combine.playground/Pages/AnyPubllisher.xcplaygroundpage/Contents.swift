@@ -8,7 +8,7 @@ import Combine
 
 var cancellables = Set<AnyCancellable>()
 
-// Publisher which receives 1 value and complete
+// Publisher which sends 1 value and complete
 var oneValuePublisher: AnyPublisher<Int, Never>
 
 // TODO:

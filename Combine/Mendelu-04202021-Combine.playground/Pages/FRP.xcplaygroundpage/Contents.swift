@@ -4,7 +4,7 @@ import Foundation
 let randomString = String.randomString(of: 100)
 
 // MARK: TASK 1
-// Return count of a character in randomString
+// Count occurrences of a character in randomString
 
 // 1 - Imperative approach
 // Check every letter and increase counter
