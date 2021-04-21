@@ -19,17 +19,16 @@ final class MarketDetailStore: ObservableObject {
         case failed(error: Error)
     }
 
+    // Public
+    let marketItem: MarketItem
+
     // Dependencies
     private let marketsService: MarketsServicing = MarketsService.shared
 
     @Published private(set) var chartState = ChartState.initial
-//    typealias AdditionalInfoStateType = ViewModelState<MarketDetailViewModel.AdditionalInfo>
-//    @Published private(set) var additionalInfoState = AdditionalInfoStateType.initial
 
-    let marketItem: MarketItem
-
+    // Private
     private let refreshDataSubject = PassthroughSubject<Void, Never>()
-
     private var cancellables = Set<AnyCancellable>()
 
     init(marketItem: MarketItem) {
@@ -70,52 +69,6 @@ final class MarketDetailStore: ObservableObject {
                 self?.chartState = state
             }
             .store(in: &cancellables)
-
-//        // Additional info
-//        refreshDataSubject.eraseToAnyPublisher()
-//            .filter { [weak self] in
-//                guard let self = self else { return false }
-//                switch self.additionalInfoState {
-//                case .ready:
-//                    return false
-//                default:
-//                    return true
-//                }
-//            }
-//            .compactMap { [weak self] _ -> AnyPublisher<AdditionalInfoStateType, Never>? in
-//                guard let self = self else { return nil }
-//
-//                return self.marketsService.marketDetail(market: self.market)
-//                    // Ready state
-//                    .map { value -> AdditionalInfoStateType in
-//                        AdditionalInfoStateType.ready(
-//                            value: MarketDetailViewModel.AdditionalInfo(
-//                                marketCap: value.marketCap,
-//                                ath: value.ath,
-//                                athChangePercentage: value.athChangePercentage,
-//                                totalVolume: value.totalVolume,
-//                                genesisDate: value.genesisDate,
-//                                website: value.website
-//                            )
-//                        )
-//                    }
-//                    // Failed state
-//                    .catch { error in Just(AdditionalInfoStateType.failed(error: error)) }
-//                    .eraseToAnyPublisher()
-//            }
-//            .switchToLatest()
-//            .sink(receiveCompletion: { [weak self] completion in
-//                switch completion {
-//                case .failure(let error):
-//                    self?.loadingNewChart = false
-//                    self?.additionalInfoState = .failed(error: error)
-//                case .finished: return
-//                }
-//            }, receiveValue: { [weak self] state in
-//                self?.loadingNewChart = false
-//                self?.additionalInfoState = state
-//            })
-//            .store(in: &cancellables)
     }
 
     func loadData() {
