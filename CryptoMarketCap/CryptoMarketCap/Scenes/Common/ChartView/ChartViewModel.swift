@@ -19,7 +19,11 @@ struct ChartViewModel: Identifiable {
     let minimumValue: Double
     let maximumValue: Double
 
-    init(values: [Value], minimumValue: Double, maximumValue: Double) {
+    init?(values: [Value], minimumValue: Double, maximumValue: Double) {
+        if values.isEmpty {
+            return nil
+        }
+
         self.values = values
         self.minimumValue = minimumValue
         self.maximumValue = maximumValue

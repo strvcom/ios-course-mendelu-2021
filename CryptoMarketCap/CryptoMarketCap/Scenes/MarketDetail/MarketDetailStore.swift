@@ -52,12 +52,11 @@ final class MarketDetailStore: ObservableObject {
                     .map { values -> ChartState in
                         guard
                             let minumum = values.map(\.value).min(),
-                            let maximum = values.map(\.value).max()
+                            let maximum = values.map(\.value).max(),
+                            let chartViewModel = ChartViewModel(values: values, minimumValue: minumum, maximumValue: maximum)
                         else {
                             return ChartState.failed(error: UnknownChartError())
                         }
-
-                        let chartViewModel = ChartViewModel(values: values, minimumValue: minumum, maximumValue: maximum)
                         return ChartState.ready(chart: chartViewModel)
                     }
                     // Failed state
