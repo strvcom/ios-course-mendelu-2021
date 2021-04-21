@@ -16,6 +16,8 @@ struct MarketItemViewModel: Identifiable, Hashable {
     let price: Double
     let priceChangePercentage: Double
     let image: URL
+
+    private static let hugePricePercentageMovement: Double = 19
 }
 
 extension MarketItemViewModel {
@@ -30,7 +32,13 @@ extension MarketItemViewModel {
     }
 
     var priceChangeText: String {
-        String(format: "%.1f", priceChangePercentage) + "%"
+        let priceChangeFormatted = String(format: "%.1f", priceChangePercentage) + "%"
+        if priceChangePercentage > Self.hugePricePercentageMovement {
+            return "🚀 \(priceChangeFormatted)"
+        } else if priceChangePercentage < -Self.hugePricePercentageMovement {
+            return "📉 \(priceChangeFormatted)"
+        }
+        return priceChangeFormatted
     }
 
     var priceChangeColor: Color {
