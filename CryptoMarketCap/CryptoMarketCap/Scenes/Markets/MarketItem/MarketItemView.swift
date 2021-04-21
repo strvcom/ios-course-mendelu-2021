@@ -14,13 +14,7 @@ struct MarketItemView: View {
     var body: some View {
         HStack(spacing: 12) {
             // icon
-            AsyncImage(
-                    url: model.image,
-                    placeholder: {
-                        Color(.systemGray)
-                    },
-                    image: { Image(uiImage: $0).resizable() }
-                )
+            AsyncImage(url: model.image)
                 .cornerRadius(20)
                 .frame(width: 35, height: 35)
 
