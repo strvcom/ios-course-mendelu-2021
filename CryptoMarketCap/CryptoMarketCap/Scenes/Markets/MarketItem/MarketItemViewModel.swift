@@ -30,13 +30,7 @@ extension MarketItemViewModel {
     }
 
     var priceChangeText: String {
-        let priceChangeFormatted = String(format: "%.1f", priceChangePercentage) + "%"
-        if priceChangePercentage > 19 {
-            return "🚀 \(priceChangeFormatted)"
-        } else if priceChangePercentage < -19 {
-            return "📉 \(priceChangeFormatted)"
-        }
-        return priceChangeFormatted
+        String(format: "%.1f", priceChangePercentage) + "%"
     }
 
     var priceChangeColor: Color {

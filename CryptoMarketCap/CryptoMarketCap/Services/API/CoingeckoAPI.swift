@@ -11,13 +11,23 @@ import Foundation
 enum CoingeckoAPI {
     static let client = NetworkClient()
 
-    private static let base: String = "https://api.coingecko.com/api/v3"
+    private static let hostBase: String = "api.coingecko.com"
+    private static let pathBase = "/api/v3"
 }
 
 // MARK: - Endpoints
 extension CoingeckoAPI {
     static func markets() -> AnyPublisher<[MarketItem], Error> {
-        let url = buildUrl(with: "/coins/markets?vs_currency=czk&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+        let url = buildUrl(
+            with: "/coins/markets",
+            queryItems: [
+                URLQueryItem(name: "vs_currency", value: "czk"),
+                URLQueryItem(name: "order", value: "market_cap_desc"),
+                URLQueryItem(name: "per_page", value: "100"),
+                URLQueryItem(name: "page", value: "1"),
+                URLQueryItem(name: "sparkline", value: "false")
+            ]
+        )
         var urlRequest = URLRequest(url: url)
         urlRequest.cachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
         let request: AnyPublisher<[CoingeckoMarket], Error> = run(urlRequest)
@@ -32,13 +42,23 @@ extension CoingeckoAPI {
     static func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
         // Load 7 day chart
         let days = 7
-        let url = buildUrl(with: "/coins/\(marketId)/market_chart?vs_currency=czk&days=\(days)")
+        let url = buildUrl(
+            with: "/coins/\(marketId)/market_chart",
+            queryItems: [
+                URLQueryItem(name: "vs_currency", value: "czk"),
+                URLQueryItem(name: "days", value: "\(days)")
+            ]
+        )
         let request: AnyPublisher<CoingeckoChart, Error> = run(URLRequest(url: url))
         return request
             .map(\.prices)
             .map { response in
+                // API sends us the data in the format of array [[Double]]
                 response.compactMap { item in
+                    // item[0] is date in nanoseconds
+                    // item[1] is the price value
                     guard item.count == 2 else {
+                        assertionFailure("Wrong data format. Please investigate.")
                         return nil
                     }
                     let date = Date(timeIntervalSince1970: item[0] / 1000) // 1000 because of nanoseconds
@@ -57,9 +77,15 @@ private extension CoingeckoAPI {
             .eraseToAnyPublisher()
     }
 
-    static func buildUrl(with path: String) -> URL {
-        let stringUrl = base + path
-        return URL(string: stringUrl)!
+    static func buildUrl(with path: String, queryItems: [URLQueryItem] = []) -> URL {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = hostBase
+        components.path = pathBase + path
+        components.queryItems = queryItems
+
+        assert(components.url != nil, "URL is nil. Make sure to fix this before release.")
+        return components.url!.absoluteURL
     }
 }
 

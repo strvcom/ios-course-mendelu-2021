@@ -17,11 +17,11 @@ final class MarketsStore: ObservableObject {
         case failed(error: Error)
     }
 
-    // Dependencies
-    private let marketsService: MarketsServicing = MarketsService.shared
-
     // Public
     @Published private(set) var state = State.initial
+
+    // Dependencies
+    private let marketsService: MarketsServicing = MarketsService.shared
 
     // Private
     private let refreshDataSubject = PassthroughSubject<Void, Never>()
