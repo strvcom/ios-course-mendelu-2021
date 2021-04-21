@@ -15,7 +15,6 @@ struct ChartViewModel: Identifiable {
     }
 
     let id = UUID()
-
     let values: [Value]
     let minimumValue: Double
     let maximumValue: Double

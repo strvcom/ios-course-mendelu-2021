@@ -15,7 +15,7 @@
 		8F48955426242412000A3F40 /* CryptoMarketCapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48955326242412000A3F40 /* CryptoMarketCapUITests.swift */; };
 		8F48956D26242BF0000A3F40 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48956C26242BF0000A3F40 /* NetworkClient.swift */; };
 		8F48957526242C0D000A3F40 /* MarketsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957426242C0D000A3F40 /* MarketsService.swift */; };
-		8F48957A26242C51000A3F40 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957926242C51000A3F40 /* Market.swift */; };
+		8F48957A26242C51000A3F40 /* MarketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957926242C51000A3F40 /* MarketItem.swift */; };
 		8F48957F26242C6D000A3F40 /* CoingeckoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48957E26242C6D000A3F40 /* CoingeckoAPI.swift */; };
 		8F48958526242DE0000A3F40 /* MarketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48958426242DE0000A3F40 /* MarketsStore.swift */; };
 		8F48958A262431D7000A3F40 /* MarketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F489589262431D7000A3F40 /* MarketsView.swift */; };
@@ -66,7 +66,7 @@
 		8F48955526242412000A3F40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F48956C26242BF0000A3F40 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		8F48957426242C0D000A3F40 /* MarketsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsService.swift; sourceTree = "<group>"; };
-		8F48957926242C51000A3F40 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		8F48957926242C51000A3F40 /* MarketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketItem.swift; sourceTree = "<group>"; };
 		8F48957E26242C6D000A3F40 /* CoingeckoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoingeckoAPI.swift; sourceTree = "<group>"; };
 		8F48958426242DE0000A3F40 /* MarketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsStore.swift; sourceTree = "<group>"; };
 		8F489589262431D7000A3F40 /* MarketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsView.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		8F48956726242916000A3F40 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8F48957926242C51000A3F40 /* Market.swift */,
+				8F48957926242C51000A3F40 /* MarketItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -440,7 +440,7 @@
 				8F48957526242C0D000A3F40 /* MarketsService.swift in Sources */,
 				8F48958A262431D7000A3F40 /* MarketsView.swift in Sources */,
 				8F489590262432E8000A3F40 /* ErrorView.swift in Sources */,
-				8F48957A26242C51000A3F40 /* Market.swift in Sources */,
+				8F48957A26242C51000A3F40 /* MarketItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

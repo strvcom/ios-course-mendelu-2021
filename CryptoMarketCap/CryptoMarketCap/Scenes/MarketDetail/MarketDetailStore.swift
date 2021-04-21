@@ -8,6 +8,8 @@
 import Combine
 import SwiftUI
 
+struct UnknownChartError: Error { }
+
 final class MarketDetailStore: ObservableObject {
     // ChartState
     enum ChartState {
@@ -24,14 +26,14 @@ final class MarketDetailStore: ObservableObject {
 //    typealias AdditionalInfoStateType = ViewModelState<MarketDetailViewModel.AdditionalInfo>
 //    @Published private(set) var additionalInfoState = AdditionalInfoStateType.initial
 
-    let market: Market
+    let marketItem: MarketItem
 
     private let refreshDataSubject = PassthroughSubject<Void, Never>()
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(market: Market) {
-        self.market = market
+    init(marketItem: MarketItem) {
+        self.marketItem = marketItem
 
         refreshDataSubject
             .handleEvents(receiveOutput: { [weak self] _ in
@@ -46,17 +48,16 @@ final class MarketDetailStore: ObservableObject {
             })
             .compactMap { [weak self] _ -> AnyPublisher<ChartState, Never>? in
                 guard let self = self else { return nil }
-                return self.marketsService.marketChart(marketId: self.market.id)
+                return self.marketsService.marketChart(marketId: self.marketItem.id)
                     // Ready state
                     .map { values -> ChartState in
                         guard
                             let minumum = values.map(\.value).min(),
                             let maximum = values.map(\.value).max()
                         else {
-                            // TODO:
-                            return ChartState.failed(error: NSError())
+                            return ChartState.failed(error: UnknownChartError())
                         }
-                        
+
                         let chartViewModel = ChartViewModel(values: values, minimumValue: minumum, maximumValue: maximum)
                         return ChartState.ready(chart: chartViewModel)
                     }

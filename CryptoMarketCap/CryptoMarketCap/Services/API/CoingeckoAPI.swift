@@ -16,7 +16,7 @@ enum CoingeckoAPI {
 
 // MARK: - Endpoints
 extension CoingeckoAPI {
-    static func markets() -> AnyPublisher<[Market], Error> {
+    static func markets() -> AnyPublisher<[MarketItem], Error> {
         let url = buildUrl(with: "/coins/markets?vs_currency=czk&order=market_cap_desc&per_page=100&page=1&sparkline=false")
         var urlRequest = URLRequest(url: url)
         urlRequest.cachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
@@ -108,9 +108,9 @@ extension CoingeckoAPI {
         let marketCapRank: Int
         let priceChangePercentage24h: Double?
 
-        var market: Market? {
+        var market: MarketItem? {
             guard let imageUrl = URL(string: image) else { return nil }
-            return Market(
+            return MarketItem(
                 id: id,
                 name: name,
                 symbol: symbol,

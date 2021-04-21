@@ -1,5 +1,5 @@
 //
-//  Market.swift
+//  MarketItem.swift
 //  CryptoMarketCap
 //
 //  Created by Marek Slávik on 12.04.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Market: Identifiable, Hashable {
+struct MarketItem: Identifiable, Hashable {
     let id: String
     let name: String
     let symbol: String
@@ -19,7 +19,7 @@ struct Market: Identifiable, Hashable {
 }
 
 // MARK: marketItemModel
-extension Market {
+extension MarketItem {
     var marketItemModel: MarketItemViewModel {
         MarketItemViewModel(
             id: id,

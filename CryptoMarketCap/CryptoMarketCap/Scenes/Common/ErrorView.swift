@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct ErrorView<Content: View>: View {
+struct ErrorView: View {
     let banner: String
     let title: String
     let message: String?
-    let content: () -> Content
+    let buttonTitle: String
+    let buttonAction: (() -> Void)
 
     var body: some View {
         VStack(spacing: 16) {
@@ -23,18 +24,22 @@ struct ErrorView<Content: View>: View {
 
             if let message = message {
                 Text(message)
-                    .padding([.leading, .trailing], 20)
+                    .padding([.horizontal], 20)
                     .multilineTextAlignment(.center)
             }
-            content()
+
+            Button(buttonTitle) {
+                buttonAction()
+            }
         }
     }
 
-    init(banner: String = "😭", title: String = "Ooops", message: String? = nil, @ViewBuilder content: @escaping () -> Content) {
+    init(banner: String = "😭", title: String = "Ooops", message: String? = nil, buttonTitle: String, buttonAction: @escaping (() -> Void)) {
         self.banner = banner
         self.title = title
         self.message = message
-        self.content = content
+        self.buttonTitle = buttonTitle
+        self.buttonAction = buttonAction
     }
 }
 
@@ -44,20 +49,18 @@ struct ErrorView_Previews: PreviewProvider {
             banner: "🤔",
             title: "Ooops",
             message: "An error occured, please try again",
-            content: {
-                Button("Retry") {
-                    print("TODO")
-                }
+            buttonTitle: "Retry",
+            buttonAction: {
+                print("Retry tapped")
             }
         )
         ErrorView(
             banner: "🤔",
             title: "Ooops",
             message: "An error occured, please try again",
-            content: {
-                Button("Retry") {
-                    print("TODO")
-                }
+            buttonTitle: "Retry",
+            buttonAction: {
+                print("Retry tapped")
             }
         ).preferredColorScheme(.dark)
     }

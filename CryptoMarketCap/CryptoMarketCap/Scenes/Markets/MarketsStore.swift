@@ -13,7 +13,7 @@ final class MarketsStore: ObservableObject {
     enum State {
         case initial
         case loading
-        case ready(markets: [Market])
+        case ready(markets: [MarketItem])
         case failed(error: Error)
     }
 

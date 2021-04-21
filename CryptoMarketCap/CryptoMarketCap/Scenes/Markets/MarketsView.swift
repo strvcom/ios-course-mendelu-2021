@@ -22,9 +22,9 @@ struct MarketsView: View {
                 ProgressView()
 
             case .ready(let markets):
-                List(markets, id: \.id) { market in
-                    NavigationLink(destination: MarketDetailView(store: MarketDetailStore(market: market))) {
-                        MarketItemView(model: market.marketItemModel)
+                List(markets, id: \.id) { marketItem in
+                    NavigationLink(destination: MarketDetailView(store: MarketDetailStore(marketItem: marketItem))) {
+                        MarketItemView(model: marketItem.marketItemModel)
                     }
                 }
                 .environment(\.defaultMinListRowHeight, 65)
@@ -32,10 +32,9 @@ struct MarketsView: View {
             case .failed(let error):
                 ErrorView(
                     message: error.localizedDescription,
-                    content: {
-                        Button("Retry") {
-                            store.loadData()
-                        }
+                    buttonTitle: "Retry",
+                    buttonAction: {
+                        store.loadData()
                     }
                 )
             }

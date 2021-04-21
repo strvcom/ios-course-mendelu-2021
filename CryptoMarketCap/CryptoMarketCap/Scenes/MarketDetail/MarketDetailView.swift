@@ -38,10 +38,9 @@ struct MarketDetailView: View {
             case .failed(let error):
                 ErrorView(
                     message: error.localizedDescription,
-                    content: {
-                        Button("Retry") {
-                            store.loadData()
-                        }
+                    buttonTitle: "Retry",
+                    buttonAction: {
+                        store.loadData()
                     }
                 )
             }
@@ -50,7 +49,7 @@ struct MarketDetailView: View {
             store.loadData()
         }
         // MARK: Navigation title
-        .navigationBarTitle("#\(store.market.marketCapRank) \(store.market.name)", displayMode: .inline)
+        .navigationBarTitle("#\(store.marketItem.marketCapRank) \(store.marketItem.name)", displayMode: .inline)
     }
 
 //    // MARK: additionalInfo
