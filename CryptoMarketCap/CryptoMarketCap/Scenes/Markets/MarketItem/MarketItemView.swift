@@ -12,13 +12,47 @@ struct MarketItemView: View {
 
     // MARK: body
     var body: some View {
-        EmptyView()
+        HStack(spacing: 12) {
+            // icon
+            AsyncImage(url: model.image)
+                .cornerRadius(20)
+                .frame(width: 35, height: 35)
 
-        // icon
+            // name, rank, symbol
+            VStack(alignment: .leading, spacing: 4) {
+                Text(model.name)
+                    .font(.body)
+                    .fontWeight(.bold)
 
-        // name, rank, symbol
+                HStack(spacing: 6) {
+                    Text(model.rankText)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(2)
+                        .background(Color(.systemFill))
+                        .cornerRadius(4)
 
-        // price, percentage change
+                    Text(model.symbol)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(.secondaryLabel))
+                }
+            }
+
+            Spacer()
+
+            // price, percentage change
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(model.priceText)
+                    .font(.body)
+                    .fontWeight(.bold)
+
+                Text(model.priceChangeText)
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(model.priceChangeColor)
+            }
+        }
     }
 }
 
