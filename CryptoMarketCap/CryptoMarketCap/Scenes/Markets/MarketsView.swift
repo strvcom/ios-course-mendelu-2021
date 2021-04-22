@@ -23,9 +23,9 @@ struct MarketsView: View {
 
             case .ready(let markets):
                 List(markets, id: \.id) { marketItem in
-//                    NavigationLink(destination: MarketDetailView(store: MarketDetailStore(marketItem: marketItem))) {
-                    MarketItemView(model: marketItem.marketItemModel)
-//                    }
+                    NavigationLink(destination: MarketDetailView(store: MarketDetailStore(marketItem: marketItem))) {
+                        MarketItemView(model: marketItem.marketItemModel)
+                    }
                 }
                 .environment(\.defaultMinListRowHeight, 65)
 
