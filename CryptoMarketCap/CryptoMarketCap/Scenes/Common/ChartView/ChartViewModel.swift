@@ -20,7 +20,11 @@ struct ChartViewModel: Identifiable {
     let maximumValue: Double
 
     init?(values: [Value], minimumValue: Double, maximumValue: Double) {
-        if values.isEmpty {
+        guard
+            values.isEmpty == false,
+            let firstValue = values.first,
+            let lastValue = values.last
+        else {
             return nil
         }
 
@@ -28,9 +32,9 @@ struct ChartViewModel: Identifiable {
         self.minimumValue = minimumValue
         self.maximumValue = maximumValue
         self.difference = maximumValue - minimumValue
-        self.lastDate = values.last!.date
-        self.currentPrice = values.last!.value
-        let percentage = (values.last!.value / values.first!.value * 100) - 100
+        self.lastDate = lastValue.date
+        self.currentPrice = lastValue.value
+        let percentage = ((lastValue.value - firstValue.value) / firstValue.value * 100)
         self.priceDifferencePercentageText = "\(String(format: "%.1f", percentage)) %"
         self.priceDifferenceIsPositive = percentage > 0
     }
