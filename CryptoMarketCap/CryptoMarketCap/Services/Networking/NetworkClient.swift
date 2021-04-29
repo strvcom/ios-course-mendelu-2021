@@ -9,21 +9,25 @@ import Foundation
 import Combine
 import os.log
 
-struct NetworkClient {
-    struct Response<T> {
-        let value: T
-        let response: URLResponse
-    }
+struct NetworkResponse<T> {
+    let value: T
+    let response: URLResponse
+}
 
+protocol Networking {
+    func perform<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder) -> AnyPublisher<NetworkResponse<T>, Error>
+}
+
+struct NetworkClient: Networking {
     private let session: URLSession = .shared
 
-    func perform<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
+    func perform<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<NetworkResponse<T>, Error> {
         os_log("🚀🚀 Performing request: %{private}@", log: OSLog.default, type: .info, request.url?.absoluteString ?? "")
         return session.dataTaskPublisher(for: request)
             .retry(2)
-            .tryMap { result -> Response<T> in
+            .tryMap { result -> NetworkResponse<T> in
                 let value = try decoder.decode(T.self, from: result.data)
-                return Response(value: value, response: result.response)
+                return NetworkResponse(value: value, response: result.response)
             }
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { value in
