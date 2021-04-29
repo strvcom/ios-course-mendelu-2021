@@ -15,19 +15,20 @@ protocol MarketsServicing: AnyObject {
 
 final class MarketsService {
 
-    static let shared = MarketsService()
+    static let shared = MarketsService(coingeckoAPI: .init(client: NetworkClient()))
+    let coingeckoAPI: CoingeckoAPI
 
-    init() {
-
+    init(coingeckoAPI: CoingeckoAPI) {
+        self.coingeckoAPI = coingeckoAPI
     }
 }
 
 extension MarketsService: MarketsServicing {
     func markets() -> AnyPublisher<[MarketItem], Error> {
-        CoingeckoAPI.markets()
+        coingeckoAPI.markets()
     }
 
     func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
-        CoingeckoAPI.marketChart(marketId: marketId)
+        coingeckoAPI.marketChart(marketId: marketId)
     }
 }

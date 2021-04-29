@@ -8,16 +8,20 @@
 import Combine
 import Foundation
 
-enum CoingeckoAPI {
-    static let client = NetworkClient()
+struct CoingeckoAPI {
+    let client: Networking
 
-    private static let hostBase: String = "api.coingecko.com"
-    private static let pathBase = "/api/v3"
+    init(client: Networking) {
+        self.client = client
+    }
+
+    private let hostBase: String = "api.coingecko.com"
+    private let pathBase = "/api/v3"
 }
 
 // MARK: - Endpoints
 extension CoingeckoAPI {
-    static func markets() -> AnyPublisher<[MarketItem], Error> {
+    func markets() -> AnyPublisher<[MarketItem], Error> {
         let url = buildUrl(
             with: "/coins/markets",
             queryItems: [
@@ -39,7 +43,7 @@ extension CoingeckoAPI {
     /// - Parameters:
     ///   - marketId: `Market.id`
     /// - Returns: Get historical market data include price
-    static func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
+    func marketChart(marketId: String) -> AnyPublisher<[ChartViewModel.Value], Error> {
         // Load 7 day chart
         let days = 7
         let url = buildUrl(
@@ -71,13 +75,13 @@ extension CoingeckoAPI {
 
 // MARK: - Helpers
 private extension CoingeckoAPI {
-    static func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
-        client.perform(request)
+    func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+        client.perform(request, JSONDecoder())
             .map(\.value)
             .eraseToAnyPublisher()
     }
 
-    static func buildUrl(with path: String, queryItems: [URLQueryItem] = []) -> URL {
+    func buildUrl(with path: String, queryItems: [URLQueryItem] = []) -> URL {
         var components = URLComponents()
         components.scheme = "https"
         components.host = hostBase
